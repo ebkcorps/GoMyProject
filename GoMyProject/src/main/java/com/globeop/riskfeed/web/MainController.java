@@ -35,6 +35,7 @@ import com.globeop.riskfeed.service.ClientService;
 import com.globeop.riskfeed.service.FundService;
 import com.globeop.riskfeed.service.OnBordService;
 import com.globeop.riskfeed.service.RiskAggregatorService;
+import com.globeop.riskfeed.util.GenricUtil;
 import com.globeop.riskfeed.validator.OnBordValidator;
 
 @Controller
@@ -172,44 +173,7 @@ public class MainController {
 	}    
 	  
 	  
-    // get OnBord page
-    @GetMapping("/AddOnBordDetails")
-    public String showOnBordForm2(OnBordDto onBordDto) {       	    	
-    	return "OnBord";
-    }
     
-    @Autowired
-    private OnBordValidator onBordValidator;
-    
-    @InitBinder
-    protected void initBinder(WebDataBinder binder) {
-       binder.addValidators(onBordValidator);
-    }
-    
-    // add OnBord details 
-    //@RequestMapping("/AddOnBordDetails")
-    @PostMapping("/AddOnBordDetails")
-	public String addOnBordDetails( /* @ModelAttribute("onBordDto") */ @Valid  OnBordDto onBordDto, Errors errors) {		
-		try {
-			//System.out.println(onBordDto.getFundList());
-			//onBordService.addDetails(onBordDto);
-			System.out.println(onBordDto);
-			//model.addAttribute("onBordDto",onBordDto);
-			if(errors.hasErrors()) {
-				System.out.println("ERROR accoured");				       	
-				
-				return "OnBord";				
-				//return "redirect:/AddOnBordDetails";
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "error";
-		}
-    	    	
-		//return "redirect:/getClient";
-		return "redirect:/OnBordClient";
-	}
     
     //Testing 
     @GetMapping("/OnBordClient2/{id}")
@@ -243,7 +207,7 @@ public class MainController {
     	for(FundTable f:fundTables) {
     		System.out.println(f.getFundID()+">>"+f.getFundShortName());
     	}
-    	model.addAttribute("funds", fundTables);
+    	//model.addAttribute("funds", fundTables);
     	model.addAttribute("client", clientTable);
     	return "fund";
     }
