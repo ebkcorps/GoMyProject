@@ -55,11 +55,6 @@
 <script src="/js/autocomplete.js"></script>
 
 <script type="text/javascript">
- //to load nav bar
- $(function(){
-	  $("#nav-placeholder").load("Nav");
-	});
-	
 
  jQuery(document).ready(function($) {
 
@@ -137,7 +132,8 @@
 </head>
 <body>
 
-	<div id="nav-placeholder"></div>
+	<!-- to include the Navbar from fragments/nav.html -->
+	<div  th:replace="fragments/nav :: navbar"></div>
 	
 	<br>
 	<div class="container">
