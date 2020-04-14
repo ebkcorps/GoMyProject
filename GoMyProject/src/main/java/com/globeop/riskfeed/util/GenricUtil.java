@@ -1,9 +1,14 @@
 package com.globeop.riskfeed.util;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import com.globeop.riskfeed.dto.LabelValueDto;
+import com.globeop.riskfeed.dto.OnBoardFunds;
+import com.globeop.riskfeed.enums.AutomationProcess;
 
 
 
@@ -75,8 +80,57 @@ public class GenricUtil {
 		 list.add(l4);
 		 return list;
 	}
+	
+	
+	public static List<OnBoardFunds> getClientFundList2(){
+		 List<OnBoardFunds> list=new ArrayList<OnBoardFunds>();
+		 OnBoardFunds f1 = new OnBoardFunds();
+		 f1.setFundName("FUND1");
+	
+		 OnBoardFunds f2 = new OnBoardFunds();
+		 f2.setFundName("FUND2");
+	
+		 OnBoardFunds f3 = new OnBoardFunds();
+		 f3.setFundName("FUND3");
+	
+		 OnBoardFunds f4 = new OnBoardFunds();
+		 f4.setFundName("FUND4");
+	
+		 
+		 list.add(f1);
+		 list.add(f2);
+		 list.add(f3);
+		 list.add(f4);
+		 return list;
+	}
 		
+	public static Date convertStringToDate(String date) {
+		Date date1=null;
+		try {
+			date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
+			/*
+			 * System.out.println(date1); DateFormat dateFormat = new
+			 * SimpleDateFormat("yyyy-mm-dd hh:mm:ss"); String strDate =
+			 * dateFormat.format(date1); System.out.println(strDate); date1=new
+			 * SimpleDateFormat("yyyy-mm-dd hh:mm:ss").parse(strDate);
+			 * System.out.println(date1);
+			 */
+            
+		}catch (Exception e) {
+			e.printStackTrace();
+		}		  
+		return date1;
+	}
     public static void main(String[] args) throws Exception {        
     	//getClientFundList("BFAM");
+    	
+    	//System.out.println(convertStringToDate("2020-04-04"));
+    	
+    	//System.out.println(AutomationProcess.valueOf("RiskMQ"));
+    	
+    	System.out.println(AutomationProcess.getEnum("RiskMQ"));
+    	
+    	Enum automationProcess=AutomationProcess.getEnum("RiskMQ");
+    	System.out.println(AutomationProcess.valueOf("RiskMQ"));
     }
 }
