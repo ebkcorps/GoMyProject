@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" mlns:th="http://www.thymeleaf.org">
 <head>
-
+<title>Clients</title>
 <!-- 
 <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -40,16 +40,16 @@
 			<th>Client Name</th>
 			<th>Modified Date</th>
 		</thead>
-		
+
 		<tbody>
 			<tr th:each="client, iterationStatus : ${clients}">				
 			<td th:text="${iterationStatus.count}">	
 			<td th:text="${client.ClientID}">
-			<td th:text="${client.ClientShortName}">
+			<td><a th:text="${client.ClientShortName}" th:href="@{'/getFund/' +${client.ClientID}}"> </a> </td>
 			<td th:text="${client.Modified_date}">
 		</tbody>
 	</table>
-	
+
 	</div>
 </div>
 
