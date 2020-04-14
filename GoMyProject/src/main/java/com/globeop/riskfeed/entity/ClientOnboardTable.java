@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,8 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
-//import com.globeop.riskfeed.GenricUtil;
+import com.globeop.riskfeed.enums.AutomationProcess;
+import com.globeop.riskfeed.enums.IsActive;
 
 @Entity  
 @Table(name="ClientOnboardTable")  
@@ -25,22 +27,22 @@ public class ClientOnboardTable {
 
 	@Id   
 	@Column(name = "ClientOnboardId")
-	@GeneratedValue	(strategy=GenerationType.AUTO)  
+	@GeneratedValue	(strategy=GenerationType.IDENTITY)  
 	private int ClientOnboardId;
 
 	@JsonBackReference
-	@ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name="ClientID")
+	@ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ClientID", nullable = false)    
 	private ClientTable client;
 
-	@JsonBackReference
-	@ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name="RiskAggregatorId")
+	//@JsonBackReference
+	@ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY,optional = false)
+	@JoinColumn(name="RiskAggregatorId", nullable = false)
 	private RiskAggregator riskAggregator;
 	
-	@JsonBackReference
-	@ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name="FundID")
+	//@JsonBackReference
+	@ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY,optional = false)
+	@JoinColumn(name="FundID", nullable = false)  
 	private FundTable fund;
 		
 	@Column(name = "SetUpDate")
@@ -49,12 +51,13 @@ public class ClientOnboardTable {
 	@Column(name = "EndDate")
 	private Date EndDate;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "AutomationProcess")
-	private String AutomationProcess;
-	//private com.globeop.riskfeed.GenricUtil.AutomationProcess AutomationProcess;
+	private AutomationProcess automationProcess;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "IsActive")
-	private String IsActive;
+	private IsActive isActive;
 	
 	@Column(name = "Comments")
 	private String Comments;
@@ -72,13 +75,7 @@ public class ClientOnboardTable {
 	public void setRiskAggregator(RiskAggregator riskAggregator) {
 		this.riskAggregator = riskAggregator;
 	}
-	
-	public String getAutomationProcess() {
-		return AutomationProcess;
-	}
-	public void setAutomationProcess(String automationProcess) {
-		AutomationProcess = automationProcess;
-	}
+		
 	public int getClientOnboardId() {
 		return ClientOnboardId;
 	}
@@ -108,14 +105,7 @@ public class ClientOnboardTable {
 	}
 	public void setEndDate(Date endDate) {
 		EndDate = endDate;
-	}
-	
-	public String getIsActive() {
-		return IsActive;
-	}
-	public void setIsActive(String isActive) {
-		IsActive = isActive;
-	}
+	}	
 	public String getComments() {
 		return Comments;
 	}
@@ -134,7 +124,24 @@ public class ClientOnboardTable {
 	public void setModified_date(Date modified_date) {
 		Modified_date = modified_date;
 	}
-	
-	
-	
+	public AutomationProcess getAutomationProcess() {
+		return automationProcess;
+	}
+	public void setAutomationProcess(AutomationProcess theAutomationProcess) {
+		this.automationProcess=theAutomationProcess;
+	}
+	public IsActive getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(IsActive theIsActive) {
+		this.isActive=theIsActive;
+	}
+
+	@Override
+	public String toString() {
+		return "ClientOnboardTable [ClientOnboardId=" + ClientOnboardId + ", client=" + client.getClientID() + ", riskAggregator="
+				+ riskAggregator.getId() + ", fund=" + fund.getFundID() + ", SetUpDate=" + SetUpDate + ", EndDate=" + EndDate
+				+ ", automationProcess=" + automationProcess + ", isActive=" + isActive + ", Comments=" + Comments
+				+ ", Frequency=" + Frequency + ", Modified_date=" + Modified_date + "]";
+	}	
 }
