@@ -13,11 +13,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity  
 @Table(name="FundTable")
 public class FundTable implements Serializable{
-	
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Id   
@@ -29,7 +26,7 @@ public class FundTable implements Serializable{
 
 
 	@Column(name = "FundShortName")
-	private String FundShortName;
+	private String fundShortName;
 	
 	@Column(name = "Modified_date")
 	private Date Modified_date;
@@ -65,11 +62,11 @@ public class FundTable implements Serializable{
 	}
 
 	public String getFundShortName() {
-		return FundShortName;
+		return fundShortName;
 	}
 
-	public void setFundShortName(String fundShortName) {
-		FundShortName = fundShortName;
+	public void setFundShortName(String theFundShortName) {
+		fundShortName = theFundShortName;
 	}
 
 	public Date getModified_date() {
@@ -98,7 +95,7 @@ public class FundTable implements Serializable{
 
 	@Override
 	public String toString() {
-		return "FundTable [FundID=" + FundID + ", FundShortName=" + FundShortName + ", Modified_date=" + Modified_date
+		return "FundTable [FundID=" + FundID + ", FundShortName=" + fundShortName + ", Modified_date=" + Modified_date
 				+ ", clientOnboardSet=" + clientOnboardSet + "]";
 	}
 	
