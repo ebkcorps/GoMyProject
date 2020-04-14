@@ -14,4 +14,10 @@ public enum IsActive {
     public String getDisplayValue() {
         return displayValue;
     }
+    
+    public static IsActive getEnum(String value) {
+        for(IsActive v : values())
+            if(v.getDisplayValue().equalsIgnoreCase(value)) return v;
+        throw new IllegalArgumentException();
+    }
 }
