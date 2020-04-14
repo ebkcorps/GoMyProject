@@ -2,8 +2,8 @@ package com.globeop.riskfeed.enums;
 
 public enum AutomationProcess {
 	
-	RiskMq("RiskMq"),
-	Cron("Cron");
+	RiskMQ("RiskMQ"),
+	Cronjob("Cronjob");
 	
 	private final String displayValue;
     
@@ -14,4 +14,11 @@ public enum AutomationProcess {
     public String getDisplayValue() {
         return displayValue;
     }
+    
+    public static AutomationProcess getEnum(String value) {
+        for(AutomationProcess v : values())
+            if(v.getDisplayValue().equalsIgnoreCase(value)) return v;
+        throw new IllegalArgumentException();
+    }
 }
+
