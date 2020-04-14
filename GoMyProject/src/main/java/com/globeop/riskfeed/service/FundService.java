@@ -76,4 +76,17 @@ public class FundService implements CommonService<FundTable> {
 	public List<FundTable> findByClient(ClientTable theClientTable) {
 		return fundTableRepository.findByClient(theClientTable);
 	}
+	
+	public FundTable  findByFundShortName(String fundShortName){
+		FundTable theFund=null;
+		List<FundTable> funds= fundTableRepository.findByFundShortName(fundShortName);
+		for(FundTable f:funds) {
+			if(f.getFundShortName().equals(fundShortName)) {
+				theFund=f;
+				break;
+			}
+		}
+		return theFund;
+	}
+	
 }
