@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" mlns:th="http://www.thymeleaf.org">
-<!-- <link rel="stylesheet" type="text/css"	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
-<script type="text/javascript" th:href="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}" ></script>
- -->
+
+<!-- working for navbar dropdowns -->
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<script src="/jquery/jquery-3.4.1.js"></script>
+<link rel="stylesheet" type="text/css"  th:href="@{/css/bootstrap.min.css}"/>
+<script src="/js/bootstrap.min.js"></script>
 
 
-<link rel="stylesheet" type="text/css"
-	th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
-
+<!-- <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<script type="text/javascript"
-	th:href="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
-
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" th:href="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+ -->
+ 
 <script type="text/javascript">
-
-$(function(){
-	  $("#nav-placeholder").load("Nav");
-	});
 	
 $(document).ready(function(){
     $('#riskAggregatorName').keyup(function(){
@@ -34,7 +30,8 @@ $(document).ready(function(){
 <title>RiskAggregator Form</title>
 </head>
 <body>
-	<div id="nav-placeholder"></div>
+	<!-- to include the Navbar from fragments/nav.html -->
+	<div  th:replace="fragments/nav :: navbar"></div>
 	<br>
 	<div class="container">
 		<form action="#" th:action="@{/AddRiskAggregator}" th:object="${riskAggregator}"
