@@ -93,15 +93,10 @@ public class RiskAggregator {
     }
 
 
-	/*
-	 * @Override public String toString() { return "RiskAggregator [id=" + id +
-	 * ", RiskAggregatorName=" + RiskAggregatorName + ", RiskAggregatorContact=" +
-	 * RiskAggregatorContact + ", Modified_date=" + Modified_date +
-	 * ", clientOnboardSet=" + clientOnboardSet + "]"; }
-	 */
-
-
-	
-	
-	
+	@Override
+	public String toString() {
+		return "RiskAggregator [id=" + id + ", RiskAggregatorName=" + RiskAggregatorName + ", RiskAggregatorContact="
+				+ RiskAggregatorContact + ", Modified_date=" + Modified_date + ", clientOnboardSet=" + clientOnboardSet
+				+ "]";
+	}	
 }
