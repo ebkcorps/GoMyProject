@@ -11,4 +11,6 @@ public interface FundTableRepository extends JpaRepository<FundTable, Integer> {
 
 
 	public List<FundTable> findByClient(ClientTable theClientTable);
+	
+	public List<FundTable> findByFundShortName(String fundShortName);
 }
