@@ -91,6 +91,10 @@ public class MainController {
     }
      
     
+    @RequestMapping("/allDetails")
+   	public String allDetails() {		
+   		return "allDetails";		
+   	} 
 
     // return list of clients available in Mysql DB
     @GetMapping("/getClient")
