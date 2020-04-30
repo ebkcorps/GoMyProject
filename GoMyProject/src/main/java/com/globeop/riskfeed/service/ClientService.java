@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.globeop.riskfeed.dto.TestDto;
 import com.globeop.riskfeed.entity.ClientTable;
 import com.globeop.riskfeed.repository.ClientRepository;
 
@@ -89,6 +90,10 @@ public class ClientService implements CommonService<ClientTable> {
 		return result;
 	}
 
+	public List<TestDto> test() {
+		return clientRepository.testQuery();
+		//return null;
+	}
 	
 
 }
