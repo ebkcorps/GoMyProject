@@ -50,7 +50,20 @@ public class ClientTable implements Serializable{
 	@OneToMany(targetEntity = ClientOnboardTable.class, cascade = CascadeType.ALL, mappedBy="client") 	
     private Set<ClientOnboardTable> clientOnboardSet;
 
+	@JsonManagedReference
+	@JsonIgnore
+	@OneToMany(targetEntity = BillTable.class, cascade = CascadeType.ALL, mappedBy="client") 	
+    private Set<BillTable> billSet;
 
+	
+	/*
+	 * @JsonManagedReference
+	 * 
+	 * @JsonIgnore
+	 * 
+	 * @OneToMany(targetEntity = ClientOnboardTable.class, cascade =
+	 * CascadeType.ALL, mappedBy="client") private Set<Development> developmentSet;
+	 */
 
 	public Set<FundTable> getFunds() {
 		return funds;
@@ -108,6 +121,14 @@ public class ClientTable implements Serializable{
 		}
 		theClientOnboardTable.setClient(this);
 		this.clientOnboardSet.add(theClientOnboardTable);
+    }
+	
+	public void addBill(BillTable theBillTable) {
+		if(theBillTable==null) {
+			billSet = new HashSet<BillTable>();
+		}
+		theBillTable.setClient(this);
+		this.billSet.add(theBillTable);
     }
 
 	@Override
