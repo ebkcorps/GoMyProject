@@ -22,13 +22,33 @@
 						<a class="dropdown-item" th:href="@{/AddFunds}" >Add Funds</a>
 						<a class="dropdown-item" th:href="@{/AddOnBordDetails1}" >OnBord Client</a>
 						<a class="dropdown-item" th:href="@{/AddDevelopmentDetails}" >Add Development Details</a>
+						<a class="dropdown-item" th:href="@{/AddBill}" >Add Bill Details</a>
 					</div>
 				</li>
 
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Get Details </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" th:href="@{/getClient}">Clients</a>
+						<a class="dropdown-item" th:href="@{/getRiskAggregator}">RiskAggregators</a>
 						<a class="dropdown-item" th:href="@{/getClient}">Clients</a> 
+						<a class="dropdown-item" th:href="@{/getOnBordedDetails}">OnBoard Details</a> 
+						<a class="dropdown-item" th:href="@{/getDevelopmentDetails}">Development Details</a> 
+						<a class="dropdown-item" href="#">Action</a> 
+						<a class="dropdown-item" href="#">Another action</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Something else here</a>
+					</div>
+				</li>
+				
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Billing Details </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" th:href="@{/BillDetails}">Bill Details</a>
+						<a class="dropdown-item" th:href="@{/allDetails}">All Details</a>
+						<a class="dropdown-item" th:href="@{/getClient}">Clients</a> 
+						<a class="dropdown-item" th:href="@{/getOnBordedDetails}">OnBoard Details</a> 
+						<a class="dropdown-item" th:href="@{/getDevelopmentDetails}">Development Details</a> 
 						<a class="dropdown-item" href="#">Action</a> 
 						<a class="dropdown-item" href="#">Another action</a>
 						<div class="dropdown-divider"></div>
