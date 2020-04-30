@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="ISO-8859-1">
+<title>All Details</title>
+
+
+<!-- working for navbar dropdowns -->
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<script src="/jquery/jquery-3.4.1.js"></script>
+<link rel="stylesheet" type="text/css"  th:href="@{/css/bootstrap.min.css}"/>
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- for fontawesome -->
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.12.0/css/fontawesome.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/fontawesome.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/brands.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/solid.css}"/> 
+<link rel="stylesheet" type="text/css" th:href="@{/css/all.css}"/>  
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" /> -->
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
+<script type="text/javascript" th:href="@{/webjars/jquery/3.3.1/jquery.min.js}" ></script>
+<link rel="stylesheet" type="text/css" href="/css/Test.css"/>
+
+
+<!-- CDN ref for Datatable -->
+
+
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script> -->
+
+ 
+ <!-- Local datatable css and js --> 
+
+<!-- <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css"/>
+<script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script> -->
+
+<!-- <script type="text/javascript" charset="utf8" src="/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="/DataTables/Buttons-1.6.1/js/buttons.flash.min.js"></script>
+<script type="text/javascript" charset="utf8" src="/DataTables/JSZip-2.5.0/jszip.min.js"></script>
+<script type="text/javascript" charset="utf8" src="/DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" charset="utf8" src="/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" charset="utf8" src="/DataTables/Buttons-1.6.1/js/buttons.html5.js"></script>
+<script type="text/javascript" charset="utf8" src="/DataTables/Buttons-1.6.1/js/buttons.print.min.js"></script> -->
+
+
+<script type="text/javascript"  src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript"  src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"/>
+
+<script type="text/javascript"  src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript"  src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+<script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript"  src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript"  src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css"/>
+
+
+
+<script src="/js/dataTable.js">
+
+
+</script>
+
+
+
+</head>
+<body>
+<!-- to include the Navbar from fragments/nav.html -->
+<div  th:replace="fragments/nav :: navbar"></div>
+
+
+<input type="hidden" id="request" value="firstRequest" />
+
+<div class="container">
+
+<h3>Select Additional fields:</h3>
+        <label><input type="checkbox" value="automationProcess" name="sport"> Automation Process</label>
+        <label><input type="checkbox" value="isActive" name="sport">Is Active</label>
+        <label><input type="checkbox" value="isWaivedOff" name="sport">Is WaivedOff</label>
+        <label><input type="checkbox" value="endDate" name="sport">EndDate</label>
+        <label><input type="checkbox" value="billingComments" name="sport">Billing Comments</label>
+        <label><input type="checkbox" value="isDevelopmentWaivedOff" name="sport">Is DevelopmentWaivedOff</label>
+        <label><input type="checkbox" value="developmentHours" name="sport">Development Hours</label>
+        <label><input type="checkbox" value="developmentCost" name="sport">Development Cost</label>
+        <!-- <label><input type="checkbox" value="" name="sport"> </label> -->
+        
+        <br>
+        
+        <div id="select"  class="btn btn-info col-2" >Select All</div>
+        
+        <button type="button" id="add" class="btn btn-info col-2"  >Add Headers</button>
+        <br>
+        
+                
+        
+        <hr>
+<div id="tableDiv"></div>
+
+</div>
+
+
+</body>
+</html>
