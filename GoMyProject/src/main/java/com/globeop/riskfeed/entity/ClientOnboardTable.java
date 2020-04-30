@@ -1,6 +1,7 @@
 package com.globeop.riskfeed.entity;
 
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -23,7 +24,7 @@ import com.globeop.riskfeed.enums.IsActive;
 
 @Entity  
 @Table(name="ClientOnboardTable")  
-public class ClientOnboardTable {
+public class ClientOnboardTable implements Serializable{
 
 	@Id   
 	@Column(name = "ClientOnboardId")
@@ -35,12 +36,12 @@ public class ClientOnboardTable {
     @JoinColumn(name = "ClientID", nullable = false)    
 	private ClientTable client;
 
-	//@JsonBackReference
+	@JsonBackReference
 	@ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY,optional = false)
 	@JoinColumn(name="RiskAggregatorId", nullable = false)
 	private RiskAggregator riskAggregator;
 	
-	//@JsonBackReference
+	@JsonBackReference
 	@ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY,optional = false)
 	@JoinColumn(name="FundID", nullable = false)  
 	private FundTable fund;
