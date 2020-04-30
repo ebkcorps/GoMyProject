@@ -1,145 +1,349 @@
 package com.globeop.riskfeed.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class BillTable {
-	private int BillId ;
-	private int SetupFee ;
-	private int MonthlyFee ;
-	private int DevlopementFee;
-	private String IsClientPayingOldCharge;
-	private String IsWaived;
-	private String WaiverComments;
-	private Date BillStartDate;
-	private Date BillEndDate;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.globeop.riskfeed.enums.IsClientPayingOldCharges;
+import com.globeop.riskfeed.enums.IsWaivedOff;
+
+
+@Entity  
+@Table(name="BillTable")  
+public class BillTable implements Serializable{
 	
-	//private String ClientId;
-	//private int RiskAggregatorId;
+	@Id   
+	@Column(name = "BillId")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int billId;
+	
+	@Column(name = "SetupFee")
+	private int setupFee;
+	
+	@Column(name = "MonthlyFee")
+	private int monthlyFee;
+	
+	@Column(name = "DevlopementFee")
+	private int devlopementFee;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "IsClientPayingOldCharges")
+	private IsClientPayingOldCharges isClientPayingOldCharges;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "IsWaivedOff")
+	private IsWaivedOff isWaivedOff;
+	
+	@Lob
+	@Column(name = "WaiverMail")
+	private byte[] waiverMail;
+	
+	@Column(name = "WaiverFileName")
+	private String waiverFileName;
+	
+	@Column(name = "BillStartDate")
+	private Date billStartDate;
+	
+	@Column(name = "BillEndDate")
+	private Date billEndDate;
+
+	@JsonBackReference
+	@ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ClientID", nullable = false)    
+	private ClientTable client;
+	
+	@JsonBackReference
+	@ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY,optional = false)
+	@JoinColumn(name="RiskAggregatorId", nullable = false)
 	private RiskAggregator riskAggregator;
 	
-	private String CRMName;
-	private String CRMEmailID;
-	private String ClientApprovalMail;
-	private String BillingComments;
-	private String GoCheckNoteId;
-	private String TerminationMail;
-	private int Fundcount;
+	@Column(name = "CRMName")
+	private String crmName;
 	
-	private ClientTable client;
-	//private RiskAggregator riskAggregator;
+	@Column(name = "CRMEmailId")
+	private String crmailID;
 	
+	@Lob
+	@Column(name = "ClientApprovalMail")
+	private byte[] clientApprovalMail;
 	
+	@Column(name = "ClientApprovalMailName")
+	private String clientApprovalMailName;
 	
+	@Column(name = "BillingComments")
+	private String 	billingComments;
 	
-	public int getSetupFee() {
-		return SetupFee;
+	@Column(name = "GoCheckNoteId")
+	private int goCheckNoteId;
+	
+	@Lob
+	@Column(name = "TerminationMail")
+	private byte[] terminationMail;
+	
+	@Column(name = "TerminationMailName")
+	private String terminationMailName;
+	
+	@Column(name = "Fundcount")
+	private int fundcount;
+	
+	@Column(name = "Modified_date")
+	private Date modified_date;
+		
+	@Transient
+	private String waiverMailUrl;
+	
+	@Transient
+	private String clientApprovalMailUrl;
+	
+	@Transient
+	private String terminationMailUrl;
+	
+	public BillTable() {}
+
+	public BillTable(byte[] waiverMail, String waiverFileName, byte[] clientApprovalMail, String clientApprovalMailName,
+			byte[] terminationMail, String terminationMailName) {
+		this.waiverMail = waiverMail;
+		this.waiverFileName = waiverFileName;
+		this.clientApprovalMail = clientApprovalMail;
+		this.clientApprovalMailName = clientApprovalMailName;
+		this.terminationMail = terminationMail;
+		this.terminationMailName = terminationMailName;
 	}
-	public RiskAggregator getRiskAggregator() {
-		return riskAggregator;
-	}
-	public void setRiskAggregator(RiskAggregator riskAggregator) {
-		this.riskAggregator = riskAggregator;
-	}
+
 	public int getBillId() {
-		return BillId;
+		return billId;
 	}
+
 	public void setBillId(int billId) {
-		BillId = billId;
+		this.billId = billId;
 	}
-	
+
+	public int getSetupFee() {
+		return setupFee;
+	}
+
 	public void setSetupFee(int setupFee) {
-		SetupFee = setupFee;
+		this.setupFee = setupFee;
 	}
+
 	public int getMonthlyFee() {
-		return MonthlyFee;
+		return monthlyFee;
 	}
+
 	public void setMonthlyFee(int monthlyFee) {
-		MonthlyFee = monthlyFee;
+		this.monthlyFee = monthlyFee;
 	}
+
 	public int getDevlopementFee() {
-		return DevlopementFee;
+		return devlopementFee;
 	}
+
 	public void setDevlopementFee(int devlopementFee) {
-		DevlopementFee = devlopementFee;
+		this.devlopementFee = devlopementFee;
 	}
-	public String getIsClientPayingOldCharge() {
-		return IsClientPayingOldCharge;
+
+	public IsClientPayingOldCharges getIsClientPayingOldCharges() {
+		return isClientPayingOldCharges;
 	}
-	public void setIsClientPayingOldCharge(String isClientPayingOldCharge) {
-		IsClientPayingOldCharge = isClientPayingOldCharge;
+
+	public void setIsClientPayingOldCharges(IsClientPayingOldCharges isClientPayingOldCharges) {
+		this.isClientPayingOldCharges = isClientPayingOldCharges;
 	}
-	public String getIsWaived() {
-		return IsWaived;
+
+	public IsWaivedOff getIsWaivedOff() {
+		return isWaivedOff;
 	}
-	public void setIsWaived(String isWaived) {
-		IsWaived = isWaived;
+
+	public void setIsWaivedOff(IsWaivedOff isWaivedOff) {
+		this.isWaivedOff = isWaivedOff;
 	}
-	public String getWaiverComments() {
-		return WaiverComments;
+
+	public byte[] getWaiverMail() {
+		return waiverMail;
 	}
-	public void setWaiverComments(String waiverComments) {
-		WaiverComments = waiverComments;
+
+	public void setWaiverMail(byte[] waiverMail) {
+		this.waiverMail = waiverMail;
 	}
+
 	public Date getBillStartDate() {
-		return BillStartDate;
+		return billStartDate;
 	}
+
 	public void setBillStartDate(Date billStartDate) {
-		BillStartDate = billStartDate;
+		this.billStartDate = billStartDate;
 	}
+
 	public Date getBillEndDate() {
-		return BillEndDate;
+		return billEndDate;
 	}
+
 	public void setBillEndDate(Date billEndDate) {
-		BillEndDate = billEndDate;
+		this.billEndDate = billEndDate;
 	}
-	public String getCRMName() {
-		return CRMName;
-	}
-	public void setCRMName(String cRMName) {
-		CRMName = cRMName;
-	}
-	public String getCRMEmailID() {
-		return CRMEmailID;
-	}
-	public void setCRMEmailID(String cRMEmailID) {
-		CRMEmailID = cRMEmailID;
-	}
-	public String getClientApprovalMail() {
-		return ClientApprovalMail;
-	}
-	public void setClientApprovalMail(String clientApprovalMail) {
-		ClientApprovalMail = clientApprovalMail;
-	}
-	public String getBillingComments() {
-		return BillingComments;
-	}
-	public void setBillingComments(String billingComments) {
-		BillingComments = billingComments;
-	}
-	public String getGoCheckNoteId() {
-		return GoCheckNoteId;
-	}
-	public void setGoCheckNoteId(String goCheckNoteId) {
-		GoCheckNoteId = goCheckNoteId;
-	}
-	public String getTerminationMail() {
-		return TerminationMail;
-	}
-	public void setTerminationMail(String terminationMail) {
-		TerminationMail = terminationMail;
-	}
-	public int getFundcount() {
-		return Fundcount;
-	}
-	public void setFundcount(int fundcount) {
-		Fundcount = fundcount;
-	}
+
 	public ClientTable getClient() {
 		return client;
 	}
+
 	public void setClient(ClientTable client) {
 		this.client = client;
 	}
+
+	public RiskAggregator getRiskAggregator() {
+		return riskAggregator;
+	}
+
+	public void setRiskAggregator(RiskAggregator riskAggregator) {
+		this.riskAggregator = riskAggregator;
+	}
+
+	public String getCrmName() {
+		return crmName;
+	}
+
+	public void setCrmName(String crmName) {
+		this.crmName = crmName;
+	}
+
+	public String getCrmailID() {
+		return crmailID;
+	}
+
+	public void setCrmailID(String crmailID) {
+		this.crmailID = crmailID;
+	}
+
+	public byte[] getClientApprovalMail() {
+		return clientApprovalMail;
+	}
+
+	public void setClientApprovalMail(byte[] clientApprovalMail) {
+		this.clientApprovalMail = clientApprovalMail;
+	}
+
+	public String getBillingComments() {
+		return billingComments;
+	}
+
+	public void setBillingComments(String billingComments) {
+		this.billingComments = billingComments;
+	}
+
+	public int getGoCheckNoteId() {
+		return goCheckNoteId;
+	}
+
+	public void setGoCheckNoteId(int goCheckNoteId) {
+		this.goCheckNoteId = goCheckNoteId;
+	}
+
+	public byte[] getTerminationMail() {
+		return terminationMail;
+	}
+
+	public void setTerminationMail(byte[] terminationMail) {
+		this.terminationMail = terminationMail;
+	}
+
+	public int getFundcount() {
+		return fundcount;
+	}
+
+	public void setFundcount(int fundcount) {
+		this.fundcount = fundcount;
+	}
+
+	public Date getModified_date() {
+		return modified_date;
+	}
+
+	public void setModified_date(Date modified_date) {
+		this.modified_date = modified_date;
+	}
+	
+		
+
+	public String getWaiverFileName() {
+		return waiverFileName;
+	}
+
+	public void setWaiverFileName(String waiverFileName) {
+		this.waiverFileName = waiverFileName;
+	}
+
+	public String getClientApprovalMailName() {
+		return clientApprovalMailName;
+	}
+
+	public void setClientApprovalMailName(String clientApprovalMailName) {
+		this.clientApprovalMailName = clientApprovalMailName;
+	}
+
+	public String getTerminationMailName() {
+		return terminationMailName;
+	}
+
+	public void setTerminationMailName(String terminationMailName) {
+		this.terminationMailName = terminationMailName;
+	}
+
+	public String getWaiverMailUrl() {
+		return waiverMailUrl;
+	}
+
+	public void setWaiverMailUrl(String waiverMailUrl) {
+		this.waiverMailUrl = waiverMailUrl;
+	}
+
+	public String getClientApprovalMailUrl() {
+		return clientApprovalMailUrl;
+	}
+
+	public void setClientApprovalMailUrl(String clientApprovalMailUrl) {
+		this.clientApprovalMailUrl = clientApprovalMailUrl;
+	}
+
+	public String getTerminationMailUrl() {
+		return terminationMailUrl;
+	}
+
+	public void setTerminationMailUrl(String terminationMailUrl) {
+		this.terminationMailUrl = terminationMailUrl;
+	}
+
+	@Override
+	public String toString() {
+		return "BillTable [billId=" + billId + ", setupFee=" + setupFee + ", monthlyFee=" + monthlyFee
+				+ ", devlopementFee=" + devlopementFee + ", isClientPayingOldCharges=" + isClientPayingOldCharges
+				+ ", isWaivedOff=" + isWaivedOff + ", waiverFileName=" + waiverFileName + ", billStartDate="
+				+ billStartDate + ", billEndDate=" + billEndDate + ", client=" + client.getClientShortName() + ", riskAggregator="
+				+ riskAggregator.getRiskAggregatorName() + ", crmName=" + crmName + ", crmailID=" + crmailID + ", clientApprovalMailName="
+				+ clientApprovalMailName + ", billingComments=" + billingComments + ", goCheckNoteId=" + goCheckNoteId
+				+ ", terminationMailName=" + terminationMailName + ", fundcount=" + fundcount + ", modified_date="
+				+ modified_date + ", waiverMailUrl=" + waiverMailUrl + ", clientApprovalMailUrl="
+				+ clientApprovalMailUrl + ", terminationMailUrl=" + terminationMailUrl + "]";
+	}
+
+	
+
+	
+	
 	
 	
 	
