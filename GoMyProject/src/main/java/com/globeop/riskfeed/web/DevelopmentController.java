@@ -90,7 +90,7 @@ public class DevelopmentController {
 	    		devTable.setDownloadUrl(fileDownloadUri);	    		
 	    		developmentList2.add(devTable);
 	    	}	    		  		    	
-	    	model.addAttribute("developmentList", developmentList);
+	    	model.addAttribute("developmentList", developmentList2);
 	    	return "developmentDetails";
 	    }
 	 
