@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.globeop.riskfeed.dto.TestDto;
 import com.globeop.riskfeed.entity.ClientOnboardTable;
 import com.globeop.riskfeed.entity.ClientTable;
 import com.globeop.riskfeed.entity.FundTable;
@@ -52,5 +53,30 @@ public class ClientOnboardService implements CommonService<ClientOnboardTable> {
 
 	public List<ClientOnboardTable> findByClientAndRiskAggregator(ClientTable theClientTable, RiskAggregator theAggregator){
 		return theClientOnboardRepository.findByClientAndRiskAggregator(theClientTable, theAggregator);
+	}
+	
+	public List<ClientOnboardTable> getClientsOfRiskAggregator( RiskAggregator theAggregator){
+		//return theClientOnboardRepository.findByRiskAggregator(theAggregator.getId());
+		return theClientOnboardRepository.findByRiskAggregator(theAggregator);
+	}
+	
+	public List<TestDto> getAllBillingDetails() {
+		return theClientOnboardRepository.getAllBillingDetails();		
+	}
+	
+	public List<TestDto> test() {
+		//return theClientOnboardRepository.testQuery();
+		return theClientOnboardRepository.getAllBillingDetails();
+		//return null;
+	}
+	
+	public List<TestDto> getPendingBillingDetails() {
+		//return theClientOnboardRepository.testQuery();
+		return theClientOnboardRepository.getAllPendingBillingDetails();
+		//return null;
+	}
+	
+	public List<ClientOnboardTable> test2() {
+		return theClientOnboardRepository.testQuery2();
 	}
 }
