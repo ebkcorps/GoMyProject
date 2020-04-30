@@ -1,5 +1,6 @@
 package com.globeop.riskfeed.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +14,7 @@ import com.globeop.riskfeed.dto.OnBoardFunds;
 import com.globeop.riskfeed.enums.IsWaivedOff;
 
 
-public class OnBordDto {
+public class OnBordDto implements Serializable{
 	
 	private String onBoardForm="";
 	
@@ -64,7 +65,151 @@ public class OnBordDto {
 	private byte[] ApprovalMail;
 	
 	
+	// for Bill 
 	
+	private int setupFee;
+	
+	private int monthlyFee;
+	
+	private int devlopementFee;
+	
+	private String isClientPayingOldCharges;
+	
+	// use common isWaivedOff field.
+	
+	private byte[] waiverMail;
+	
+	//for dillStartDate and dillEndDate use startDate and endDate field 
+	
+	// for ClientID and riskAggregatorId use common clientId,riskAggregatorId field.
+		
+	private String crmName;
+	
+	private String crmailID;
+	
+	private byte[] clientApprovalMail;
+	
+	//for billingComments use common field comments;
+	
+	private int goCheckNoteId;
+	
+	private byte[] terminationMail;
+	
+	private int fundcount;
+	
+	
+	
+	
+	public int getSetupFee() {
+		return setupFee;
+	}
+
+
+	public void setSetupFee(int setupFee) {
+		this.setupFee = setupFee;
+	}
+
+
+	public int getMonthlyFee() {
+		return monthlyFee;
+	}
+
+
+	public void setMonthlyFee(int monthlyFee) {
+		this.monthlyFee = monthlyFee;
+	}
+
+
+	public int getDevlopementFee() {
+		return devlopementFee;
+	}
+
+
+	public void setDevlopementFee(int devlopementFee) {
+		this.devlopementFee = devlopementFee;
+	}
+
+
+	public String getIsClientPayingOldCharges() {
+		return isClientPayingOldCharges;
+	}
+
+
+	public void setIsClientPayingOldCharges(String isClientPayingOldCharges) {
+		this.isClientPayingOldCharges = isClientPayingOldCharges;
+	}
+
+
+	public byte[] getWaiverMail() {
+		return waiverMail;
+	}
+
+
+	public void setWaiverMail(byte[] waiverMail) {
+		this.waiverMail = waiverMail;
+	}
+
+
+	public String getCrmName() {
+		return crmName;
+	}
+
+
+	public void setCrmName(String crmName) {
+		this.crmName = crmName;
+	}
+
+
+	public String getCrmailID() {
+		return crmailID;
+	}
+
+
+	public void setCrmailID(String crmailID) {
+		this.crmailID = crmailID;
+	}
+
+
+	public byte[] getClientApprovalMail() {
+		return clientApprovalMail;
+	}
+
+
+	public void setClientApprovalMail(byte[] clientApprovalMail) {
+		this.clientApprovalMail = clientApprovalMail;
+	}
+
+
+	public int getGoCheckNoteId() {
+		return goCheckNoteId;
+	}
+
+
+	public void setGoCheckNoteId(int goCheckNoteId) {
+		this.goCheckNoteId = goCheckNoteId;
+	}
+
+
+	public byte[] getTerminationMail() {
+		return terminationMail;
+	}
+
+
+	public void setTerminationMail(byte[] terminationMail) {
+		this.terminationMail = terminationMail;
+	}
+
+
+	public int getFundcount() {
+		return fundcount;
+	}
+
+
+	public void setFundcount(int fundcount) {
+		this.fundcount = fundcount;
+	}
+
+
 	public String getOnBoardForm() {
 		return onBoardForm;
 	}
@@ -243,9 +388,26 @@ public class OnBordDto {
 				+ ", riskAggregatorId=" + riskAggregatorId + ", fundName=" + fundName + ", fundIds=" + fundIds
 				+ ", setUpDate=" + setUpDate + ", endDate=" + endDate + ", automationProcess=" + automationProcess
 				+ ", isActive=" + isActive + ", comments=" + comments + ", frequency=" + frequency
-				+ ", onBoardFundsList=" + onBoardFundsList + "]";
+				+ ", onBoardFundsList=" + onBoardFundsList + ", developmentHours=" + developmentHours
+				+ ", developmentCost=" + developmentCost + ", isWaivedOff=" + isWaivedOff + ", startDate=" + startDate
+				+ ", developmentComments=" + developmentComments + ", setupFee=" + setupFee + ", monthlyFee="
+				+ monthlyFee + ", devlopementFee=" + devlopementFee + ", isClientPayingOldCharges="
+				+ isClientPayingOldCharges + ", crmName=" + crmName + ", crmailID=" + crmailID + ", goCheckNoteId="
+				+ goCheckNoteId + ", fundcount=" + fundcount + "]";
 	}
-
+	
+	
+	
+//old to String
+	/*
+	 * @Override public String toString() { return "OnBordDto [onBoardForm=" +
+	 * onBoardForm + ", clientName=" + clientName + ", clientId=" + clientId +
+	 * ", riskAggregatorId=" + riskAggregatorId + ", fundName=" + fundName +
+	 * ", fundIds=" + fundIds + ", setUpDate=" + setUpDate + ", endDate=" + endDate
+	 * + ", automationProcess=" + automationProcess + ", isActive=" + isActive +
+	 * ", comments=" + comments + ", frequency=" + frequency + ", onBoardFundsList="
+	 * + onBoardFundsList + "]"; }
+	 */
 
 
 
