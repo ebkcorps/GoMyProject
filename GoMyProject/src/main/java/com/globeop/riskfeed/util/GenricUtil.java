@@ -6,6 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.globeop.riskfeed.dto.LabelValueDto;
 import com.globeop.riskfeed.dto.OnBoardFunds;
 import com.globeop.riskfeed.enums.AutomationProcess;
@@ -120,6 +124,10 @@ public class GenricUtil {
 			e.printStackTrace();
 		}		  
 		return date1;
+	}
+	
+	public static String  getFileName(MultipartFile file) {
+		return StringUtils.cleanPath(file.getOriginalFilename());		
 	}
     public static void main(String[] args) throws Exception {        
     	//getClientFundList("BFAM");
