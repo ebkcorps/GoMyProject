@@ -2,6 +2,8 @@ package com.globeop.riskfeed.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.validation.Valid;
 
@@ -181,6 +183,21 @@ public class OnboardController {
 	    	model.addAttribute("clientOnboardList", clientOnboardList);
 	    	return "OnBordDetails";
 	    }
+    
+    @GetMapping("/getClientsOFRisKAggregator/{id}")
+    public String getFundById(@PathVariable Integer id,Model model) {    
+    	RiskAggregator theAggregator = riskAggregatorService.findById(id);
+    	List<ClientOnboardTable> clientOnboardList= theClientOnboardService.getClientsOfRiskAggregator(theAggregator);
+    	List<ClientTable> clientList=new ArrayList<ClientTable>();
+    	for(ClientOnboardTable c : clientOnboardList) {
+    		//System.out.println(c.getClient());
+    		clientList.add(c.getClient());    		
+    	}
+    	
+ 
+    	model.addAttribute("clients", clientList);    	
+    	return "client";
+    }
     
     // example for multiple inputs
 	/*
