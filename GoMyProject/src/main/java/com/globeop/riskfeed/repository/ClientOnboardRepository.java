@@ -93,4 +93,18 @@ public interface ClientOnboardRepository extends JpaRepository<ClientOnboardTabl
 			  + " and c.client.ClientID Not in ( select b.client.ClientID from BillTable AS b) " )
 	  
 	public List<TestDto> getAllPendingBillingDetails(); 
+	  
+	  
+	  @Query(value=
+			  "SELECT NEW com.globeop.riskfeed.dto.TestDto("
+			  + "c.riskAggregator.id,  "
+			  + "c.riskAggregator.RiskAggregatorName,  "
+			  + "COUNT( DISTINCT c.client ) ) "
+			  
+			  + " from ClientOnboardTable AS c "
+			  +" GROUP BY c.riskAggregator"
+			  +" ORDER BY c.riskAggregator.RiskAggregatorName asc"
+			 )
+	  
+	public List<TestDto> getOveraAllDetails(); 
 }
