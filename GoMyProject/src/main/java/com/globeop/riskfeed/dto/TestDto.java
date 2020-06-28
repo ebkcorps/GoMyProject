@@ -34,6 +34,8 @@ public class TestDto {
 	private String crmName, crmailID, billingComments;
 	
 	private int goCheckNoteId, fundcount;
+	
+	private long count;
 
 	private int developmentId, developmentHours, developmentCost;
 	
@@ -46,6 +48,12 @@ public class TestDto {
 	public TestDto(String riskAggregatorName, String clientName) {
 		this.riskAggregatorName = riskAggregatorName;
 		this.clientName = clientName;
+	}
+	
+	public TestDto(int riskAggregatorId,String riskAggregatorName, long count) {
+		this.riskAggregatorId=riskAggregatorId;
+		this.riskAggregatorName = riskAggregatorName;
+		this.count = count;
 	}
 	
 	public TestDto(int riskAggregatorId, String riskAggregatorName, String riskAggregatorContact, 
@@ -158,6 +166,14 @@ public class TestDto {
 	
 	
 	
+	public long getCount() {
+		return count;
+	}
+
+	public void setCount(long count) {
+		this.count = count;
+	}
+
 	public int getDevelopmentId() {
 		return developmentId;
 	}
@@ -440,15 +456,38 @@ public class TestDto {
 
 	@Override
 	public String toString() {
-		return "TestDto [clientID=" + clientID + ", riskAggregatorId=" + riskAggregatorId + ", fundID=" + fundID
-				+ ", monthlyFee=" + monthlyFee + ", riskAggregatorName=" + riskAggregatorName + ", clientName="
-				+ clientName + ", fundName=" + fundName + "]";
+		return "TestDto [riskAggregatorId=" + riskAggregatorId + ", clientID=" + clientID + ", fundID=" + fundID
+				+ ", clientOnboardId=" + clientOnboardId + ", riskAggregatorName=" + riskAggregatorName
+				+ ", riskAggregatorContact=" + riskAggregatorContact + ", clientName=" + clientName + ", fundName="
+				+ fundName + ", setUpDate=" + setUpDate + ", endDate=" + endDate + ", automationProcess="
+				+ automationProcess + ", isActive=" + isActive + ", clientOnBoardComments=" + clientOnBoardComments
+				+ ", frequency=" + frequency + ", billId=" + billId + ", setupFee=" + setupFee + ", monthlyFee="
+				+ monthlyFee + ", devlopementFee=" + devlopementFee + ", isClientPayingOldCharges="
+				+ isClientPayingOldCharges + ", isWaivedOff=" + isWaivedOff + ", billStartDate=" + billStartDate
+				+ ", billEndDate=" + billEndDate + ", crmName=" + crmName + ", crmailID=" + crmailID
+				+ ", billingComments=" + billingComments + ", goCheckNoteId=" + goCheckNoteId + ", fundcount="
+				+ fundcount + ", developmentId=" + developmentId + ", developmentHours=" + developmentHours
+				+ ", developmentCost=" + developmentCost + ", isDevelopmentWaivedOff=" + isDevelopmentWaivedOff
+				+ ", developmentStartDate=" + developmentStartDate + ", developmentEndDate=" + developmentEndDate
+				+ ", count=" + count
+				+ ", developmentComments=" + developmentComments + "]";
 	}
+	
+	
 
+	/*
+	 * @Override public String toString() { return "TestDto [clientID=" + clientID +
+	 * ", riskAggregatorId=" + riskAggregatorId + ", fundID=" + fundID +
+	 * ", monthlyFee=" + monthlyFee + ", riskAggregatorName=" + riskAggregatorName +
+	 * ", clientName=" + clientName + ", fundName=" + fundName + "]"; }
+	 */
 	/*
 	 * @Override public String toString() { return "TestDto [riskAggregatorId=" +
 	 * riskAggregatorId + ", clientName=" + clientName + " , monthlyFee=" +
 	 * monthlyFee +"]"; }
 	 */
 
+	
+	
+	
 }
