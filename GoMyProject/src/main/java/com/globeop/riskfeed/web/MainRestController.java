@@ -91,4 +91,9 @@ public class MainRestController {
 	public List<TestDto> test2() {
 		return theClientOnboardService.getPendingBillingDetails();
 	}
+	
+	@GetMapping("/overAllDetails")
+	public List<TestDto> overAllDetails() {
+		return theClientOnboardService.getOverAllDetails();
+	}
 }
