@@ -86,7 +86,7 @@ public class OnBordService {
 			ClientOnboardTable theClientOnboardTable = new ClientOnboardTable();
 			//theClientOnboardTable.setSetUpDate(new Date());//(GenricUtil.convertStringToDate(onBordDto.getSetUpDate()));
 			theClientOnboardTable.setSetUpDate(GenricUtil.convertStringToDate(onBordDto.getSetUpDate()));
-			theClientOnboardTable.setEndDate(GenricUtil.convertStringToDate(onBordDto.getSetUpDate()));
+			theClientOnboardTable.setEndDate(GenricUtil.convertStringToDate(onBordDto.getEndDate()));
 			theClientOnboardTable.setAutomationProcess(AutomationProcess.valueOf(onBordDto.getAutomationProcess()));
 			theClientOnboardTable.setIsActive(IsActive.valueOf(onBordDto.getIsActive() ));
 			theClientOnboardTable.setComments(onBordDto.getComments());
