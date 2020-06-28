@@ -79,4 +79,8 @@ public class ClientOnboardService implements CommonService<ClientOnboardTable> {
 	public List<ClientOnboardTable> test2() {
 		return theClientOnboardRepository.testQuery2();
 	}
+	
+	public List<TestDto> getOverAllDetails() {
+		return theClientOnboardRepository.getOveraAllDetails();
+	}
 }
