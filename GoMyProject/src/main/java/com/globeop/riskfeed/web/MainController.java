@@ -121,12 +121,19 @@ public class MainController {
     
     // Add new client and return list of clients
     @RequestMapping(value="/AddClient", method=RequestMethod.POST)
-	public String saveUpdateDetails (@ModelAttribute("client") ClientTable theClientTable) {		
+	public String saveUpdateDetails (@ModelAttribute("client") ClientTable theClientTable,Model model) {		
 		try {
 			System.out.println(" >>> "+theClientTable.getClientShortName());
 			theClientTable.setModified_date(new Date());
 			theClientTable.setClientShortName(theClientTable.getClientShortName().toUpperCase());
-			clientService.save(theClientTable);
+			boolean result = clientService.checkClientAlreadyExist(theClientTable.getClientShortName().toUpperCase());
+			if(result==false) {
+				clientService.save(theClientTable);
+			}else {
+				model.addAttribute("message", "Client already exists");   
+				return "client-form";
+			}
+			//clientService.save(theClientTable);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
