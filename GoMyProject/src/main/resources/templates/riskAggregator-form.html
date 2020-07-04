@@ -33,13 +33,18 @@ $(document).ready(function(){
 	<!-- to include the Navbar from fragments/nav.html -->
 	<div  th:replace="fragments/nav :: navbar"></div>
 	<br>
+	
+	<div class="container" th:if="${message}">
+		<div class="alert alert-danger form-control mb-4 col-4" th:text="${message}" ></div>
+	</div>
+					
 	<div class="container">
 		<form action="#" th:action="@{/AddRiskAggregator}" th:object="${riskAggregator}"
 			method="post">
-			<input type="text" th:field="*{RiskAggregatorName}" id="riskAggregatorName"
+			<input type="text" th:field="*{riskAggregatorName}" id="riskAggregatorName"
 				placeholder="RiskAggregator Short Name" class="form-control mb-4 col-4">
 				
-				<input type="text" th:field="*{RiskAggregatorContact}" id="riskAggregatorContact"
+				<input type="text" th:field="*{riskAggregatorContact}" id="riskAggregatorContact"
 				placeholder="RiskAggregator Contact" class="form-control mb-4 col-4">
 				
 			<!-- <input type="text" th:field="*{}" placeholder=""> -->
