@@ -31,6 +31,9 @@ $(document).ready(function(){
 	<!-- to include the Navbar from fragments/nav.html -->
 	<div  th:replace="fragments/nav :: navbar"></div>
 	<br>
+	<div class="container" th:if="${message}">
+		<div class="alert alert-danger form-control mb-4 col-4" th:text="${message}" ></div>
+	</div>
 	<div class="container">
 		<form action="#" th:action="@{/AddClient}" th:object="${client}"
 			method="post">
