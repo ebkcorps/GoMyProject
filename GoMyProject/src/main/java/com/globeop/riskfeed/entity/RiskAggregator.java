@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 //@JsonIgnoreProperties({"clientOnboardSet", "modified_date"})
@@ -24,16 +23,21 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name="RiskAggregator")
 public class RiskAggregator implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="RiskAggregatorId")
 	private int id;
 	
 	@Column(name="RiskAggregatorName")
-	private String RiskAggregatorName;
+	private String riskAggregatorName;
 	
 	@Column(name="RiskAggregatorContact")
-	private String RiskAggregatorContact;
+	private String riskAggregatorContact;
 	
 	@Column(name="Modified_date")
 	private Date Modified_date;
@@ -61,19 +65,19 @@ public class RiskAggregator implements Serializable{
 	}
 
 	public String getRiskAggregatorName() {
-		return RiskAggregatorName;
+		return riskAggregatorName;
 	}
 
 	public void setRiskAggregatorName(String riskAggregatorName) {
-		RiskAggregatorName = riskAggregatorName;
+		this.riskAggregatorName = riskAggregatorName;
 	}
 
 	public String getRiskAggregatorContact() {
-		return RiskAggregatorContact;
+		return riskAggregatorContact;
 	}
 
 	public void setRiskAggregatorContact(String riskAggregatorContact) {
-		RiskAggregatorContact = riskAggregatorContact;
+		this.riskAggregatorContact = riskAggregatorContact;
 	}
 
 	
@@ -114,8 +118,8 @@ public class RiskAggregator implements Serializable{
 
 	@Override
 	public String toString() {
-		return "RiskAggregator [id=" + id + ", RiskAggregatorName=" + RiskAggregatorName + ", RiskAggregatorContact="
-				+ RiskAggregatorContact + ", Modified_date=" + Modified_date + "]";
+		return "RiskAggregator [id=" + id + ", RiskAggregatorName=" + riskAggregatorName + ", RiskAggregatorContact="
+				+ riskAggregatorContact + ", Modified_date=" + Modified_date + "]";
 	}
 
 
