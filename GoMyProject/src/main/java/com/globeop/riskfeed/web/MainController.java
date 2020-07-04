@@ -27,10 +27,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 //import com.globeop.risk.web.util.RecordNotFoundException;
 import com.globeop.riskfeed.dto.LabelValueDto;
+import com.globeop.riskfeed.dto.TestDto;
 import com.globeop.riskfeed.entity.ClientTable;
 import com.globeop.riskfeed.entity.FundTable;
 import com.globeop.riskfeed.entity.OnBordDto;
 import com.globeop.riskfeed.entity.RiskAggregator;
+import com.globeop.riskfeed.service.ClientOnboardService;
 import com.globeop.riskfeed.service.ClientService;
 import com.globeop.riskfeed.service.FundService;
 import com.globeop.riskfeed.service.OnBordService;
@@ -53,9 +55,13 @@ public class MainController {
 	@Autowired
 	private RiskAggregatorService riskAggregatorService;
 
+	@Autowired
+	private ClientOnboardService theClientOnboardService;
 	
     @GetMapping("/")
-    public String root() {
+    public String root(Model model) {    	
+    	List<TestDto> overAllDetails = theClientOnboardService.getOverAllDetails(); 
+    	model.addAttribute("overAllDetails", overAllDetails);    	
         return "index";
     }
     
@@ -147,12 +153,19 @@ public class MainController {
     
     // Add new client and return list of clients
     @RequestMapping(value="/AddRiskAggregator", method=RequestMethod.POST)
-	public String saveRiskAggregator (@ModelAttribute("riskAggregator") RiskAggregator theRiskAggregator) {		
+	public String saveRiskAggregator (@ModelAttribute("riskAggregator") RiskAggregator theRiskAggregator,Model model) {		
 		try {
-			System.out.println(" >>> "+theRiskAggregator.getRiskAggregatorName());
+			System.out.println(" >>> "+theRiskAggregator);
 			theRiskAggregator.setModified_date(new Date());
 			theRiskAggregator.setRiskAggregatorName(theRiskAggregator.getRiskAggregatorName().toUpperCase());
-			riskAggregatorService.save(theRiskAggregator);
+			boolean result = riskAggregatorService.checkRiskAggregatorAlreadyExist(theRiskAggregator.getRiskAggregatorName().toUpperCase());			
+			if(result==false) {
+				riskAggregatorService.save(theRiskAggregator);
+			}else {
+				model.addAttribute("message", "RiskAggregator already exists");   
+				return "riskAggregator-form";
+			}
+			//riskAggregatorService.save(theRiskAggregator);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
