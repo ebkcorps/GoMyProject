@@ -62,19 +62,42 @@ function createDatatTable(request, column ){
 
 	         var columns = [];
 	        jQuery.each(result.columns, function (i, value) {
-	            var obj = { data: value };
+	        	var obj = { data: value };
+	            if(value.includes("Date")){
+	            	obj = { data: value,
+	            			type: 'datetime',	                       
+	            			"render" : function (data) {	            				
+	            				if(data!=null){
+	            					var date = new Date(data);
+		            		        var month = date.getMonth() + 1;
+		            		        //return (month.toString().length > 1 ? month : "0" + month) + "/" + date.getDate() + "/" + date.getFullYear();
+		            		        return  date.getFullYear() + "-" + (month.toString().length > 1 ? month : "0" + month) +"-" + date.getDate();
+	            				}else{
+	            					return"";
+	            				}
+	            		        
+	            		    }
+	                        
+	                       };
+	            	//console.log("colm "+JSON.stringify(obj));
+	            }else{
+	            	obj = { data: value };
+	            }
 	            columns.push(obj);
 	            //console.log(obj.data);
+	            
 	        });
-
+	        
+	        console.log(result.data);
+	        
 	        var table = $('#displayTable').DataTable({	 
 	        	"lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],	        	
 	            data: result.data,
 	            columns: columns,	            
 	            dom: 'Blfrtip',	
-	           // responsive: true,
+	           // responsive: true, // to display additional columns in below row
 	            scrollY : 400 ,
-	            scrollX : 400 ,
+	            scrollX : 400 ,	            
 	            buttons: [
 	            	{
 	                    text: 'Refresh',
