@@ -73,12 +73,20 @@
 
 </script>
 
+<style type="text/css">
 
+table.cart th, #main-content table.cart th, table.cart td, #main-content table.cart td, table.cart tr, #main-content table.cart tr, #content-area table tr, #content-area table td, #content-area table th {
+    max-width: 100px;
+    padding: 0.857em 0.587em;
+}
+
+</style>
 
 </head>
 <body>
 <!-- to include the Navbar from fragments/nav.html -->
 <div  th:replace="fragments/nav :: navbar"></div>
+<br>
 
 
 <input type="hidden" id="request" value="firstRequest" />
@@ -89,11 +97,14 @@
         <label><input type="checkbox" value="automationProcess" name="sport"> Automation Process</label>
         <label><input type="checkbox" value="isActive" name="sport">Is Active</label>
         <label><input type="checkbox" value="isWaivedOff" name="sport">Is WaivedOff</label>
-        <label><input type="checkbox" value="endDate" name="sport">EndDate</label>
+        <label><input type="checkbox" value="setUpDate" name="sport">SetUp Date</label>
+        <label><input type="checkbox" value="endDate" name="sport">End Date</label>
+        <label><input type="checkbox" value="billEndDate" name="sport">Bill End Date</label>
         <label><input type="checkbox" value="billingComments" name="sport">Billing Comments</label>
         <label><input type="checkbox" value="isDevelopmentWaivedOff" name="sport">Is DevelopmentWaivedOff</label>
         <label><input type="checkbox" value="developmentHours" name="sport">Development Hours</label>
         <label><input type="checkbox" value="developmentCost" name="sport">Development Cost</label>
+        
         <!-- <label><input type="checkbox" value="" name="sport"> </label> -->
         
         <br>
