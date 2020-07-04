@@ -90,6 +90,17 @@ public class ClientService implements CommonService<ClientTable> {
 		return result;
 	}
 
+	public boolean checkClientAlreadyExist(String name) {
+		List<ClientTable> clients = clientRepository.findByClientShortNameStartingWith(name.toUpperCase());
+		if(clients==null) {
+			return false;
+		}
+		for(ClientTable client : clients) {
+			if(client.getClientShortName().equals(name)) 
+				return true;						
+		}
+		return false;
+	}
 	public List<TestDto> test() {
 		return clientRepository.testQuery();
 		//return null;
