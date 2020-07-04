@@ -58,7 +58,7 @@ public interface ClientOnboardRepository extends JpaRepository<ClientOnboardTabl
 	
 	  @Query(value=
 	  "SELECT NEW com.globeop.riskfeed.dto.TestDto("
-	  + "c.riskAggregator.id, c.riskAggregator.RiskAggregatorName, c.riskAggregator.RiskAggregatorContact, "
+	  + "c.riskAggregator.id, c.riskAggregator.riskAggregatorName, c.riskAggregator.riskAggregatorContact, "
 	  + "c.client.ClientID, c.client.clientShortName, "
 	  + "c.fund.FundID, c.fund.fundShortName,"
 	  + "c.ClientOnboardId, c.SetUpDate, c.EndDate, c.automationProcess, c.isActive, c.Comments, c.Frequency,"
@@ -85,7 +85,7 @@ public interface ClientOnboardRepository extends JpaRepository<ClientOnboardTabl
 	  
 	  @Query(value=
 			  "SELECT NEW com.globeop.riskfeed.dto.TestDto("
-			  + "c.riskAggregator.RiskAggregatorName,  "
+			  + "c.riskAggregator.riskAggregatorName,  "
 			  + "c.client.clientShortName) "
 			  
 			  + " from ClientOnboardTable AS c "
@@ -98,13 +98,25 @@ public interface ClientOnboardRepository extends JpaRepository<ClientOnboardTabl
 	  @Query(value=
 			  "SELECT NEW com.globeop.riskfeed.dto.TestDto("
 			  + "c.riskAggregator.id,  "
-			  + "c.riskAggregator.RiskAggregatorName,  "
+			  + "c.riskAggregator.riskAggregatorName,  "
 			  + "COUNT( DISTINCT c.client ) ) "
 			  
 			  + " from ClientOnboardTable AS c "
 			  +" GROUP BY c.riskAggregator"
-			  +" ORDER BY c.riskAggregator.RiskAggregatorName asc"
+			  +" ORDER BY c.riskAggregator.riskAggregatorName asc"
 			 )
 	  
 	public List<TestDto> getOveraAllDetails(); 
+	  
+	  @Query(value=
+			  "SELECT NEW com.globeop.riskfeed.dto.TestDto("
+			  + "c.client.ClientID,  "
+			  + "c.client.clientShortName, "
+			  + "c.client.Modified_date  )"	
+			  
+			  + " from ClientOnboardTable AS c "
+			  + " where c.riskAggregator.id =?1"
+			  +" GROUP BY c.client.ClientID"			  
+			 )
+	  public List<TestDto> findByRiskAggregator2(int theAggregatorId);
 }
