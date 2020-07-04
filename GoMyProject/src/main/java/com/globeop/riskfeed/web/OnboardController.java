@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.globeop.riskfeed.dto.OnBoardFunds;
+import com.globeop.riskfeed.dto.TestDto;
 import com.globeop.riskfeed.entity.ClientOnboardTable;
 import com.globeop.riskfeed.entity.ClientTable;
 import com.globeop.riskfeed.entity.DevelopmentTable;
@@ -187,11 +188,16 @@ public class OnboardController {
     @GetMapping("/getClientsOFRisKAggregator/{id}")
     public String getFundById(@PathVariable Integer id,Model model) {    
     	RiskAggregator theAggregator = riskAggregatorService.findById(id);
-    	List<ClientOnboardTable> clientOnboardList= theClientOnboardService.getClientsOfRiskAggregator(theAggregator);
+    	//List<ClientOnboardTable> clientOnboardList= theClientOnboardService.getClientsOfRiskAggregator(theAggregator);
+    	List<TestDto> clientOnboardList=	theClientOnboardService.findByRiskAggregator2(theAggregator.getId());
     	List<ClientTable> clientList=new ArrayList<ClientTable>();
-    	for(ClientOnboardTable c : clientOnboardList) {
-    		//System.out.println(c.getClient());
-    		clientList.add(c.getClient());    		
+    	for(TestDto c : clientOnboardList) {
+    		System.out.println(c.getClientID()+">>"+c.getClientName());
+    		ClientTable c2 = new ClientTable();
+    		c2.setClientID(c.getClientID());
+    		c2.setClientShortName(c.getClientName());
+    		c2.setModified_date(c.getModified_date());
+    		clientList.add(c2);    		
     	}
     	
  
