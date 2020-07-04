@@ -41,7 +41,7 @@ public class TestDto {
 	
 	private IsWaivedOff isDevelopmentWaivedOff;
 	
-	private Date developmentStartDate, developmentEndDate;
+	private Date developmentStartDate, developmentEndDate, modified_date;
 	
 	private String developmentComments;
 	
@@ -162,6 +162,11 @@ public class TestDto {
 		this.clientID = clientID;
 	}
 
+	public TestDto(int clientId, String clientName, Date modifDate) {
+		this.clientID=clientId;
+		this.clientName=clientName;
+		this.modified_date = modifDate;
+	}
 	
 	
 	
@@ -452,6 +457,15 @@ public class TestDto {
 
 	public void setFundID(int fundID) {
 		this.fundID = fundID;
+	}
+
+	
+	public Date getModified_date() {
+		return modified_date;
+	}
+
+	public void setModified_date(Date modified_date) {
+		this.modified_date = modified_date;
 	}
 
 	@Override
