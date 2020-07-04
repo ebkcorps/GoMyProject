@@ -41,6 +41,19 @@ public class RiskAggregatorService implements CommonService<RiskAggregator> {
 		return theRiskAggregator;
 	}
 
+		
+	public boolean checkRiskAggregatorAlreadyExist(String name) {
+		List<RiskAggregator> riskAggregators = riskAggregatorRepository.findByRiskAggregatorNameStartingWith(name);
+		if(riskAggregators==null) {
+			return false;
+		}
+		for(RiskAggregator riskAggregator : riskAggregators) {
+			if(riskAggregator.getRiskAggregatorName().equals(name)) 
+				return true;						
+		}
+		return false;
+	}
+	
 	@Override
 	public void save(RiskAggregator theRiskAggregator) {
 		riskAggregatorRepository.save(theRiskAggregator);
