@@ -150,6 +150,13 @@ public class TestDto {
 		this.fundName = fundName;
 		this.monthlyFee = monthlyFee;
 	}
+	
+	public TestDto(int clientID, String clientName, String fundName, Date modifDate) {		
+		this.clientID = clientID;
+		this.clientName = clientName;
+		this.fundName = fundName;
+		this.modified_date = modifDate;
+	}
 
 	public TestDto(int clientID, int riskAggregatorId, int fundID) {
 		this.clientID = clientID;
