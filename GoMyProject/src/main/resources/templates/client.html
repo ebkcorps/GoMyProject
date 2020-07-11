@@ -27,10 +27,14 @@
 <br>
 <div class="container">
 
-<a th:href="@{/showFormForAdd}" class="btn btn-primary btn-sm mb-3">Add Client</a>
+<!-- <a th:href="@{/showFormForAdd}" class="btn btn-primary btn-sm mb-3">Add Client</a>
 
-<a th:href="@{/OnBordClient}" class="btn btn-primary btn-sm mb-3">OnBord Client</a>
+<a th:href="@{/OnBordClient}" class="btn btn-primary btn-sm mb-3">OnBord Client</a> -->
 
+	<div class="container" th:if="${riskAggregator}">		
+		<h3 th:text="${riskAggregator} + ' Clients'"> </h3>
+	</div>
+	<hr>
 	<div class="container">
 	
 	<table class="table table-bordered table-hover">
@@ -45,7 +49,8 @@
 			<tr th:each="client, iterationStatus : ${clients}">				
 			<td th:text="${iterationStatus.count}">	
 			<td th:text="${client.ClientID}">
-			<td><a th:text="${client.ClientShortName}" th:href="@{'/getFund/' +${client.ClientID}}"> </a> </td>
+			<td th:if="${riskAggregator}"><a th:text="${client.ClientShortName}" th:href="@{'/getFund/'+${riskAggregatorId}+'/' +${client.ClientID}}"> </a> </td>
+			<td th:unless="${riskAggregator}"><a th:text="${client.ClientShortName}" th:href="@{'/getFund/' +${client.ClientID}}"> </a> </td>
 			<td th:text="${client.Modified_date}">
 		</tbody>
 	</table>
