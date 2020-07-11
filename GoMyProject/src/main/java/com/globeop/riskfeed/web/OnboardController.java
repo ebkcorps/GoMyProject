@@ -192,7 +192,7 @@ public class OnboardController {
     	List<TestDto> clientOnboardList=	theClientOnboardService.findByRiskAggregator2(theAggregator.getId());
     	List<ClientTable> clientList=new ArrayList<ClientTable>();
     	for(TestDto c : clientOnboardList) {
-    		System.out.println(c.getClientID()+">>"+c.getClientName());
+    		//System.out.println(c.getClientID()+">>"+c.getClientName());
     		ClientTable c2 = new ClientTable();
     		c2.setClientID(c.getClientID());
     		c2.setClientShortName(c.getClientName());
@@ -200,7 +200,8 @@ public class OnboardController {
     		clientList.add(c2);    		
     	}
     	
- 
+    	model.addAttribute("riskAggregator", theAggregator.getRiskAggregatorName());
+    	model.addAttribute("riskAggregatorId", theAggregator.getId());
     	model.addAttribute("clients", clientList);    	
     	return "client";
     }
