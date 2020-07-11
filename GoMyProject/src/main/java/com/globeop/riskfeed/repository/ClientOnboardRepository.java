@@ -119,4 +119,19 @@ public interface ClientOnboardRepository extends JpaRepository<ClientOnboardTabl
 			  +" GROUP BY c.client.ClientID"			  
 			 )
 	  public List<TestDto> findByRiskAggregator2(int theAggregatorId);
+	  
+	  
+	  @Query(value=
+			  "SELECT NEW com.globeop.riskfeed.dto.TestDto("
+			  + "c.client.ClientID,  "
+			  + "c.client.clientShortName, "
+			  + "c.fund.fundShortName, "
+			  + "c.Modified_date )"
+			  
+			  + " from ClientOnboardTable AS c "
+			  + " where c.riskAggregator.id =?1"
+			  + " and c.client.ClientID =?2"
+			  //+" GROUP BY c.client.ClientID"			  
+			 )
+	  public List<TestDto> findFundsDetailsByClientAndRiskAggregator(int riskAggregatorId,int clientId);
 }
