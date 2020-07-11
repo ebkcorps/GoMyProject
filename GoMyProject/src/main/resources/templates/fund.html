@@ -20,8 +20,14 @@
 <div class="container">
 
 <br>
+<div class="container" th:if="${riskAggregator}">		
+		<h3 th:text="${riskAggregator} +' ' +${clientName} +' Fund Details'"> </h3>
+</div>
 
-<h3>Client and Fund Details</h3>
+
+<div class="container" th:unless="${riskAggregator}">
+	<h3>Client and Fund Details</h3>
+</div>
 
 <hr>
 
