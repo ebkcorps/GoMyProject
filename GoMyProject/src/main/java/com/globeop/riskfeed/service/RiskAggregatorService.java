@@ -6,15 +6,19 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.globeop.riskfeed.entity.ClientTable;
 import com.globeop.riskfeed.entity.RiskAggregator;
 import com.globeop.riskfeed.repository.RiskAggregatorRepository;
+
+import org.springframework.data.domain.Sort;
 
 @Service
 public class RiskAggregatorService implements CommonService<RiskAggregator> {
 
 	private RiskAggregatorRepository riskAggregatorRepository;
 	
+	private Sort sortByRiskAggregatorNameAsc() {
+        return new Sort(Sort.Direction.ASC, "riskAggregatorName");
+    }
 	
 	@Autowired
 	public RiskAggregatorService(RiskAggregatorRepository riskAggregatorRepository) {		
@@ -24,7 +28,7 @@ public class RiskAggregatorService implements CommonService<RiskAggregator> {
 	@Override
 	public List<RiskAggregator> findAll() {
 		// TODO Auto-generated method stub
-		return riskAggregatorRepository.findAll();
+		return riskAggregatorRepository.findAll(sortByRiskAggregatorNameAsc());		
 	}
 
 	@Override
