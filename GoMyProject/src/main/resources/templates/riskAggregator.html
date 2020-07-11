@@ -28,17 +28,21 @@
 
 <a th:href="@{/OnBordClient}" class="btn btn-primary btn-sm mb-3">OnBord Client</a> -->
 
-        <a th:href="@{/AddRiskAggregator}" class="btn btn-primary btn-sm mb-3">Add RiskAggregator</a>
+<!--         <a th:href="@{/AddRiskAggregator}" class="btn btn-primary btn-sm mb-3">Add RiskAggregator</a>
 		<a th:href="@{/AddClient}" class="btn btn-primary btn-sm mb-3">Add Client</a>
 		<a th:href="@{/AddFunds}" class="btn btn-primary btn-sm mb-3">Add Funds</a>
-		<a th:href="@{/OnBordClient}" class="btn btn-primary btn-sm mb-3">OnBord Client</a>
+		<a th:href="@{/OnBordClient}" class="btn btn-primary btn-sm mb-3">OnBord Client</a> -->
 
 	<div class="container">
+	
+	<h3>RiskAggregators </h3>
+	
+	<hr>
 	
 	<table class="table table-bordered table-hover">
 		<thead class="thead-dark">
 			<th>Sr No.</th>	
-			<th>RiskAggregator Id</th>
+			<!-- <th>RiskAggregator Id</th> -->
 			<th>RiskAggregator  Name</th>
 			<th>RiskAggregator  Contact</th>
 			<th>Modified Date</th>
@@ -47,10 +51,10 @@
 		<tbody>
 			<tr th:each="riskAggregator, iterationStatus : ${riskAggreList}">				
 			<td th:text="${iterationStatus.count}">	
-			<td th:text="${riskAggregator.id}">
+			<!-- <td th:text="${riskAggregator.id}"> -->
 			<!-- <td th:text="${riskAggregator.RiskAggregatorName}"> -->
 			<td><a th:text="${riskAggregator.RiskAggregatorName}" th:href="@{'getClientsOFRisKAggregator/' +${riskAggregator.id}}"> </a> </td> 
-			<td th:text="${riskAggregator.RiskAggregatorContact}">
+			<td th:text="${riskAggregator.RiskAggregatorContact}">			
 			<td th:text="${riskAggregator.Modified_date}">
 		</tbody>
 	</table>
